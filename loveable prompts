@@ -1,0 +1,56 @@
+Loveable prompts I used
+Prompt 1
+
+Build a chatbot interface similar to ChatGPT.
+
+The main message input should be a text area named 'var1' with a placeholder that says "Var1".
+
+Make sure there are smaller inputs for these fields: field name: 'var2' (labeled "Var2"), field name: 'var3' (labeled "Var3").
+These inputs are required to be filled out before the user can send their first message. They are not required for subsequent messages.
+
+When the user types Enter on their first message, call POST https://agents.toolhouse.ai/268765c0-d0bf-4f9c-974b-2b4af11958b5 with a JSON body that looks like this: { "vars": { "field_name": "value for this field", "other_field_name": "value for this field", ... } }
+
+The request will return an X-Toolhouse-Run-ID header. Save it in the runId variable.
+
+On any subsequent user message, call PUT https://agents.toolhouse.ai/268765c0-d0bf-4f9c-974b-2b4af11958b5/runId with this JSON body: { "message": "the user message from var1" }
+
+Note that both endpoints will stream the response back to you in chunks, so you must show each chunk as it arrives. The streaming response will be in Markdown, so make sure to format so it displays nicely.
+
+
+Prompt 2
+
+
+Change the font to be something more beautiful.
+var1 should be events.
+var3 should be location.
+var2 should always be default.
+Add a button to redirect to a send email page.
+
+
+Prompt 3
+
+Make the chat page reactive.
+Don't display "Since you mentioned not to send an email if the variable is 'default,' I will not proceed with sending an email..."
+Add "built with toolhouse" next to "clone my agent".
+
+Add a "Send Email" button.
+
+Prompt 4
+
+Add a dark mode.
+Change /email to only accept email.
+var1 and var3 should be the same as the most recent call.
+Change "built with toolhouse" to "built with toolhouse and loveable" and add the Toolhouse logo.
+Remove "Send Email" from the landing page.
+
+Prompt 5
+
+/chat page
+Make sure links are displayed in the chat interface.
+Make sure Toolhouse logo is bigger and placed next to "clone my agent here".
+
+/email page
+This page should ONLY ask for email (no chat interface).
+On submit, call PUT https://agents.toolhouse.ai/268765c0-d0bf-4f9c-974b-2b4af11958b5/runId with this JSON body:
+{ "message": "send an email with the last searched event to var1" }
+
