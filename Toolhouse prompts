@@ -1,0 +1,28 @@
+# toolhouse-event-agent
+
+Here is a list of prompts I used to create this!
+
+In toolhouse:
+create an agent to search the web and x for upcoming {var1}  events around {var3} , summarize and send me an email at {var2}. do not send events that have already happened starting today, use current_time with links. if var2 is "default" do not send email
+only display the events if var2 is default
+
+Once I deployed my agent, I scrolled down to the bottom to click loveable to get this prompt which i copy and pasted into loveable to get a starting point for my project
+
+
+Build a chatbot interface similar to ChatGPT.
+
+The main message input should be a text area named 'var1' with a placeholder that says "Var1".
+
+Make sure there are smaller inputs for these fields: field name: 'var2' (labeled "Var2"), field name: 'var3' (labeled "Var3").
+These inputs are required to be filled out before the user can send their first message. They are not required for subsequent messages.
+  
+When the user types Enter on their first message, call POST https://agents.toolhouse.ai/268765c0-d0bf-4f9c-974b-2b4af11958b5 with a JSON body that looks like this: { "vars": { "field_name": "value for this field", "other_field_name", "value for this field", ... } }.
+
+The request will return an X-Toolhouse-Run-ID header. Save it in the runId variable.
+
+On any subsequent user message, call PUT https://agents.toolhouse.ai/268765c0-d0bf-4f9c-974b-2b4af11958b5/runId with this JSON body: { "message": "the user message from var1" }.
+
+Note that both endpoints will stream the response back to you in chunks, so you must show each chunk as it arrives. The streaming response will be in Markdown, so make sure to format so it displays nicely.
+
+
+See loveable prompts to see what prompts I used in loveable
